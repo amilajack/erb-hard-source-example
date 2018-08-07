@@ -13,6 +13,7 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
 import { spawn, execSync } from 'child_process';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
 
@@ -212,6 +213,8 @@ export default merge.smart(baseConfig, {
           manifest: require(manifest),
           sourceType: 'var'
         }),
+
+    new HardSourceWebpackPlugin(),
 
     new webpack.HotModuleReplacementPlugin({
       multiStep: true
